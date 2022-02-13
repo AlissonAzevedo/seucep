@@ -75,22 +75,28 @@ export default {
                const data = await response.data;
                //console.log(data);
                this.isValid = true;
-               this.cep = data.cep;
-               this.logradouro = data.logradouro;
-               if(data.complemento === ""){
-                     this.complemento = "Não informado";
+               if(data.erro === true){
+                   alert("Cep não encontrado!");
                }else{
-                   this.complemento = data.complemento;
-               }   
-               this.bairro = data.bairro;
-               this.cidade = data.localidade;
-               this.uf = data.uf;
-               this.ddd = data.ddd;
+                    this.cep = data.cep;
+                    this.logradouro = data.logradouro;
+                    if(data.complemento === ""){
+                            this.complemento = "Não informado";
+                    }else{
+                        this.complemento = data.complemento;
+                    }   
+                    this.bairro = data.bairro;
+                    this.cidade = data.localidade;
+                    this.uf = data.uf;
+                    this.ddd = data.ddd;
 
-           } catch (error) {
-               alert("CEP não encontrado");
-               this.cepSearch = "";
-           }
+                
+               }
+            } catch (error) {
+                alert("CEP não encontrado");
+                this.cepSearch = "";
+            }
+               
            
         },
     },
