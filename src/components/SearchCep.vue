@@ -2,28 +2,63 @@
     <div class="container">
         <h1 class="title">SEU CEP</h1>
         <div class="containerInput">
-            <input type="text" v-model="cep" placeholder="Digite seu Cep..." />
+            <input type="text" v-model="cepSearch" placeholder="Digite seu Cep..." />
             <button @click="searchCep" class="searchButton">
                 <Search :size="28" class="searchIcon"/>
             </button>
         </div>
         <main class="main">
-            <h2>Seu Cep: 65631-375</h2>
-            <span>Rua: Rua dos Bobos</span>
-            <span>Complemento: Alguma coisa</span>
-            <span>Bairro: Centro</span>
-            <span>Cidade: Timon UF: MA</span>
+            <h2>Seu Cep: {{this.cep}}</h2>
+            <span>Rua: {{this.logradouro}}</span>
+            <span>Complemento: {{this.complemento}}</span>
+            <span>Bairro: {{this.bairro}}</span>
+            <span>Cidade: {{this.cidade}} UF: {{this.uf}}</span>
         </main>
     </div>
 </template>
 
 <script>
 import Search from "vue-material-design-icons/Magnify";
+import api from "../services/api";
 export default {
     name: "SearchCep",
     components: {
         Search,
     },
+    data() {
+        return {
+            cepSearch: "",
+            cep: "",
+            logradouro: "",
+            complemento: "",
+            bairro: "",
+            cidade: "",
+            uf: "",
+        };
+    },
+    methods: {
+        //https://viacep.com.br/ws/65631375/json/
+       async searchCep() {
+           try {
+               const response = await api.get(`${this.cepSearch}/json`);
+               const data = await response.data;
+               console.log(data);
+
+               this.cep = data.cep;
+               this.logradouro = data.logradouro;
+               this.complemento = data.complemento;
+               this.bairro = data.bairro;
+               this.cidade = data.localidade;
+               this.uf = data.uf;
+
+           } catch (error) {
+               alert("CEP não encontrado");
+               this.cepSearch = "";
+           }
+           
+        },
+    },
+
 }
 
 </script>
@@ -116,14 +151,14 @@ export default {
     }
     
     .containerInput{
-        width: auto;
+        width: 80%;
     }
     
     .title{
         font-size:60px;
     }
     .main{
-        width: auto;
+        width: 80%;
     }
     .main h2{
         font-size:24px;
