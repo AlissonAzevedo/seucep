@@ -8,12 +8,40 @@
             </button>
         </div>
         <main class="main" v-if="isValid == true">
-            <h2>Seu Cep: {{this.cep}}</h2>
-            <span>Rua: {{this.logradouro}}</span>
-            <span>Complemento: {{this.complemento}}</span>
-            <span>Bairro: {{this.bairro}}</span>
-            <span>Cidade: {{this.cidade}} UF: {{this.uf}}</span>
-            <span>DDD: {{this.ddd}}</span>
+            <h2>Seu Cep: 
+                <strong>
+                    {{this.cep}}
+                </strong>
+            </h2>
+            <span>Rua: 
+                <strong>
+                    {{this.logradouro}}
+                </strong> 
+            </span>
+            <span>Complemento: 
+                <strong>
+                    {{this.complemento}}
+                </strong> 
+            </span>
+            <span>Bairro: 
+                <strong>
+                    {{this.bairro}}
+                </strong>
+            </span>
+            <span>Cidade: 
+                <strong>
+                    {{this.cidade}} 
+                </strong>
+                UF:
+                <strong>
+                    {{this.uf}}
+                </strong>
+            </span>
+            <span>DDD: 
+                <strong>
+                    {{this.ddd}}
+                </strong>
+            </span>
         </main>
     </div>
 </template>
@@ -49,7 +77,11 @@ export default {
                this.isValid = true;
                this.cep = data.cep;
                this.logradouro = data.logradouro;
-               this.complemento = data.complemento;
+               if(data.complemento === ""){
+                     this.complemento = "Não informado";
+               }else{
+                   this.complemento = data.complemento;
+               }   
                this.bairro = data.bairro;
                this.cidade = data.localidade;
                this.uf = data.uf;
@@ -126,7 +158,7 @@ export default {
 }
 
 .searchButton:hover {
-    transform: scale(1.2);
+    transform: scale(1.3);
 }
 
 .main{
@@ -134,19 +166,24 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     width: 400px;
+    color: #fff;
 }
 
 .main h2{
     margin: 16px 8px;
     font-size: 1.5rem;
+    color: #fff;
 }
 
 .main span{
     margin-bottom: 16px;
     font-weight: bold;
+}
+.main strong{
+    color: #41B883;
 }
 
 @media(max-width: 400px) {
