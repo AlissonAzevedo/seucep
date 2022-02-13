@@ -7,7 +7,6 @@
                 <Search :size="28" class="searchIcon"/>
             </button>
         </div>
-
         <main class="main">
             <h2>Seu Cep: 65631-375</h2>
             <span>Rua: Rua dos Bobos</span>
@@ -83,9 +82,51 @@ export default {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: 0.3s;
+    color: #fff;
 }
 
 .searchButton:hover {
     transform: scale(1.2);
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    width: 400px;
+}
+
+.main h2{
+    margin: 16px 8px;
+    font-size: 1.5rem;
+}
+
+.main span{
+    margin-bottom: 16px;
+    font-weight: bold;
+}
+
+@media(max-width: 400px) {
+    .container{
+        width: auto;
+    }
+    
+    .containerInput{
+        width: auto;
+    }
+    
+    .title{
+        font-size:60px;
+    }
+    .main{
+        width: auto;
+    }
+    .main h2{
+        font-size:24px;
+    }
 }
 </style>
