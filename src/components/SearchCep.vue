@@ -42,7 +42,7 @@ export default {
            try {
                const response = await api.get(`${this.cepSearch}/json`);
                const data = await response.data;
-               console.log(data);
+               //console.log(data);
 
                this.cep = data.cep;
                this.logradouro = data.logradouro;
