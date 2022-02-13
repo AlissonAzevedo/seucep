@@ -7,12 +7,13 @@
                 <Search :size="28" class="searchIcon"/>
             </button>
         </div>
-        <main class="main">
+        <main class="main" v-if="isValid == true">
             <h2>Seu Cep: {{this.cep}}</h2>
             <span>Rua: {{this.logradouro}}</span>
             <span>Complemento: {{this.complemento}}</span>
             <span>Bairro: {{this.bairro}}</span>
             <span>Cidade: {{this.cidade}} UF: {{this.uf}}</span>
+            <span>DDD: {{this.ddd}}</span>
         </main>
     </div>
 </template>
@@ -34,6 +35,8 @@ export default {
             bairro: "",
             cidade: "",
             uf: "",
+            ddd: "",
+            isValid: false,
         };
     },
     methods: {
@@ -43,13 +46,14 @@ export default {
                const response = await api.get(`${this.cepSearch}/json`);
                const data = await response.data;
                //console.log(data);
-
+               this.isValid = true;
                this.cep = data.cep;
                this.logradouro = data.logradouro;
                this.complemento = data.complemento;
                this.bairro = data.bairro;
                this.cidade = data.localidade;
                this.uf = data.uf;
+               this.ddd = data.ddd;
 
            } catch (error) {
                alert("CEP não encontrado");
