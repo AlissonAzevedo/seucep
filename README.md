@@ -21,7 +21,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-O SEUCEP é um site simples onde você pode consultar qualquer cep e ele trara todas as infomações daquele cep, como: cidade, uf, bairro, ddd etc. Totalmente responsivo(acessível em smartphones e desktops).
+O SEUCEP é um site simples onde você pode consultar qualquer cep e ele trará todas as infomações daquele cep, como: cidade, uf, bairro, ddd etc. Totalmente responsivo(acessível em smartphones e desktops).
 
 ## Project setup
 ```
