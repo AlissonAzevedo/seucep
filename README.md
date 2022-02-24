@@ -17,6 +17,7 @@
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - Vue.js
+- API <a href="https://viacep.com.br/">VIACEP</a>
 
 
 ## 💻 Projeto
